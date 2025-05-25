@@ -7,7 +7,7 @@ app=Flask(__name__)
 def init_db():
 	with sqlite3.connect("notlar.db") as database:
 		cursor=database.cursor()
-		cursor.execute("create table if not exists notes (id integer primary key, content text)")
+		cursor.execute("create table if not exists notes (id integer primary key, content text, category text)")
 		database.commit()
 #uygulama başlarken veritabanını hazırlayalım.
 init_db()
@@ -16,7 +16,7 @@ init_db()
 def index():
 	with sqlite3.connect("notlar.db") as database:
 		cursor =database.cursor()
-		cursor.execute("select * from notes")
+		cursor.execute("SELECT id, content, category FROM notes")
 		notes = cursor.fetchall()
 	return render_template("index.html", notes=notes)
 	
@@ -25,10 +25,12 @@ def index():
 @app.route('/add', methods=['POST'])
 def add_note():
 	note_content=request.form.get("note") #formdan not içeriğini al.
+	note_category=request.form.get("category")#kategoriyi al
 	
 	with sqlite3.connect("notlar.db") as database:
 		cursor=database.cursor()
-		cursor.execute("insert into notes(content) values(?)",(note_content,))
+		cursor.execute("INSERT INTO notes(content, category) VALUES(?, ?)", (note_content.strip(), note_category.strip()))
+
 		database.commit()
 	return redirect ("/")
 		
@@ -36,7 +38,6 @@ def add_note():
 @app.route('/delete/<int:id>')
 def delete_notes(id):
 	with sqlite3.connect("notlar.db") as database:
-		cursor=database.cursor()
 		cursor=database.cursor()
 		cursor.execute("delete from notes where id=?", (id,))
 		database.commit()

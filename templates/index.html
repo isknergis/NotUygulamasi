@@ -9,15 +9,28 @@
     
     <form action ="/add" method ="POST">
     	<input type="text" name ="note" placeholder="yeni bir not yaz">
+    	<select name="category">
+        <option value="İş">İş</option>
+        <option value="Kişisel">Kişisel</option>
+        <option value="Alışveriş">Alışveriş</option>
+    </select>
+    	
+    	
+    	
+    	
+    	
+    	
     	<button type ="submit"> ekle </button>
     </form>
+{% for note in notes %}
+    <p>
+        ID: {{ note[0] }} <br>
+        İçerik: {{ note[1] }} <br>
+        Kategori: {{ note[2] }} <br>
+    </p>
+{% endfor %}
 
-    {% for note in notes %}
-        <p>{{ note[1] }}
-        <a href ="/delete/{{ note [0] }}"> Sil</a>
-        <a href="/update/{{ note[0] }}">✏️ Düzenle</a>
-        </p>
-    {% endfor %}
+
 
 </body>
 </html>
