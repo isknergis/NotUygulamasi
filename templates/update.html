@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Not Güncelleme</title>
+</head>
+<body>
+
+    <h1>Notu Güncelle</h1>
+
+    <form action="/update/{{ id }}" method="POST">
+        <input type="text" name="note" value="{{ note[0] }}">
+        <button type="submit">Güncelle</button>
+    </form>
+
+</body>
+</html>
