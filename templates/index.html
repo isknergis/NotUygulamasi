@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Not Alma Uygulaması</title>
 </head>
 <body>
 
     <h1>Notlarım</h1>
     
-    <form action ="/add" method ="POST">
-    	<input type="text" name ="note" placeholder="yeni bir not yaz">
-    	<select name="category">
-        <option value="İş">İş</option>
-        <option value="Kişisel">Kişisel</option>
-        <option value="Alışveriş">Alışveriş</option>
-    </select>
-    	
-    	
-    	
-    	
-    	
-    	
-    	<button type ="submit"> ekle </button>
+    <form action="/add" method="POST">
+        <input type="text" name="note" placeholder="Yeni bir not yaz" required>
+        <select name="category">
+            <option value="İş">İş</option>
+            <option value="Kişisel">Kişisel</option>
+            <option value="Alışveriş">Alışveriş</option>
+            </select>
+        <button type="submit">Ekle</button>
     </form>
-{% for note in notes %}
+
+    <h2>Tüm Notlar</h2>
+    {% for note in notes %}
     <p>
         ID: {{ note[0] }} <br>
         İçerik: {{ note[1] }} <br>
         Kategori: {{ note[2] }} <br>
+        <a href="/delete/{{ note[0] }}">🗑️ Sil</a> 
+        <a href="/update/{{ note[0] }}">✏️ Düzenle</a> 
+        <a href="/category/{{ note[2] }}">({{ note[2] }} Notları)</a>
     </p>
-{% endfor %}
-
-
+    <hr>
+    {% endfor %}
 
 </body>
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ kategori }} Kategorisi Notları</title>
+</head>
+<body>
+
+    <h1>{{ kategori }} Notları</h1>
+    <a href="/">🔙 Ana Sayfa</a> 
+    <a href="/add_category/{{ kategori }}">➕ Yeni Not Ekle</a> 
+    <hr>
+
+    {% for note in notes %}
+    <p>
+        {{ note[1] }} 
+        <a href="/delete/{{ note[0] }}">🗑️ Sil</a> 
+        <a href="/update_category/{{ kategori }}/{{ note[0] }}">✏️ Düzenle</a> 
+    </p>
+    {% endfor %}
+
+</body>
+</html>
