@@ -1,35 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Not Alma Uygulaması</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>Notlarım</h1>
-    
+{% block title %}Tüm Notlarım{% endblock %} {# Bu sayfanın tarayıcı sekmesi başlığı #}
+
+{% block content %}
+    <h2>Notlarım</h2>
+
     <form action="/add" method="POST">
         <input type="text" name="note" placeholder="Yeni bir not yaz" required>
         <select name="category">
             <option value="İş">İş</option>
             <option value="Kişisel">Kişisel</option>
             <option value="Alışveriş">Alışveriş</option>
-            </select>
+        </select>
         <button type="submit">Ekle</button>
     </form>
 
-    <h2>Tüm Notlar</h2>
+    <h3>Mevcut Notlar</h3>
     {% for note in notes %}
     <p>
-        ID: {{ note[0] }} <br>
-        İçerik: {{ note[1] }} <br>
-        Kategori: {{ note[2] }} <br>
+        **ID:** {{ note[0] }} <br>
+        **İçerik:** {{ note[1] }} <br>
+        **Kategori:** {{ note[2] }} 
         <a href="/delete/{{ note[0] }}">🗑️ Sil</a> 
         <a href="/update/{{ note[0] }}">✏️ Düzenle</a> 
         <a href="/category/{{ note[2] }}">({{ note[2] }} Notları)</a>
     </p>
-    <hr>
     {% endfor %}
-
-</body>
-</html>
+{% endblock %}

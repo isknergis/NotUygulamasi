@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Not Güncelleme</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>Notu Güncelle</h1>
-    <a href="/">🔙 Ana Sayfa</a>
+{% block title %}Not Güncelle{% endblock %}
+
+{% block content %}
+    <h2>Notu Güncelle</h2>
+    <p>
+        <a href="/">🔙 Ana Sayfa</a>
+    </p>
 
     <form action="/update/{{ id }}" method="POST">
         <input type="text" name="note" value="{{ note[0] }}" required>
         <button type="submit">Güncelle</button>
     </form>
-
-</body>
-</html>
+{% endblock %}

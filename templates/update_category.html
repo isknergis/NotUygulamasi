@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ kategori }} Notunu Düzenle</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>{{ kategori }} Notunu Düzenle</h1>
-    <a href="/category/{{ kategori }}">🔙 Geri Dön</a>
+{% block title %}{{ kategori }} Notunu Düzenle{% endblock %}
+
+{% block content %}
+    <h2>{{ kategori }} Notunu Düzenle</h2>
+    <p>
+        <a href="/category/{{ kategori }}">🔙 Geri Dön</a>
+    </p>
 
     <form action="/update/{{ kategori }}/{{ id }}" method="POST">
         <input type="text" name="note" value="{{ note[0] }}" required> 
         <button type="submit">Güncelle</button>
     </form>
-
-</body>
-</html>
+{% endblock %}

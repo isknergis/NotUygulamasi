@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ kategori }} Kategorisine Not Ekle</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>{{ kategori }} Kategorisine Not Ekle</h1>
-    <a href="/">🔙 Ana Sayfa</a> 
-    <a href="/category/{{ kategori }}">🔙 Geri Dön</a>
+{% block title %}{{ kategori }} Kategorisine Not Ekle{% endblock %}
+
+{% block content %}
+    <h2>{{ kategori }} Kategorisine Not Ekle</h2>
+    <p>
+        <a href="/category/{{ kategori }}">🔙 Geri Dön</a>
+    </p>
 
     <form action="/add/{{ kategori }}" method="POST">
         <input type="text" name="note" placeholder="Yeni not yaz" required>
         <button type="submit">Ekle</button>
     </form>
-
-</body>
-</html>
+{% endblock %}

@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ kategori }} Kategorisi Notları</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>{{ kategori }} Notları</h1>
-    <a href="/">🔙 Ana Sayfa</a> 
-    <a href="/add_category/{{ kategori }}">➕ Yeni Not Ekle</a> 
-    <hr>
+{% block title %}{{ kategori }} Kategorisi Notları{% endblock %}
+
+{% block content %}
+    <h2>{{ kategori }} Notları</h2>
+    <p>
+        <a href="/add_category/{{ kategori }}">➕ Yeni Not Ekle</a> 
+    </p>
 
     {% for note in notes %}
     <p>
@@ -18,6 +15,4 @@
         <a href="/update_category/{{ kategori }}/{{ note[0] }}">✏️ Düzenle</a> 
     </p>
     {% endfor %}
-
-</body>
-</html>
+{% endblock %}
